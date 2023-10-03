@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="robots" content="index, follow">
+<title></title>	
+<link rel="stylesheet" href="css/main.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!--animateNumber.min.js-->
+<!-- <script src="js/jquery.animateNumber.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.9/jquery.animateNumber.js" integrity="sha512-aQyAkmqDDSsibu6XhhxehKP1728NBX1NtlKshVWCe+K/NlchOMrj3xdgftZtyzlOGDlvi7q4gfe1Bx1f4oTaww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    .progress-bar {
+        position: relative;
+        width: 960px; height: 30px;
+        margin: 3em auto;
+        border : 1px solid green;
+    }    
+
+    .bar {
+        position: absolute;
+        left: 0; top: 0; bottom:0;
+        width: 10%;
+        background: green;
+    }
+
+    .rate {
+        position: absolute;
+        top:0; bottom:0; right: 15px;
+        font-size: 1.2em; color:green;
+        line-height: 30px;
+    }
+
+</style>
+
+
+<!--
+    bar은 absoulute로 
+    rate은 absolute로
+-->
+
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="bar"></div>
+        <div class="rate" data-rate="80"></div>
+    </div>
+</body>
+
+<script>
+    var progressWrap = $('.progress-bar'),
+        progressBar = progressWrap.find('.bar'),
+        progressText = progressWrap.find('.rate'),
+        progressRate = progressText.attr('data-rate');
+    
+    //bar animation 2.5s width로 바뀌는 에니메이트 
+    //(1) 게이지바가 오히려 줄어드는 이슈가 있습니다.  px 이 아니라 '%' 로 바뀌어야 줄어들지 않는 이슈가 있습니다.
+    progressBar.animate({width:progressRate + '%'},2500); // 게이지 채워지는 animate
+    
+    //(2-1) 바의 %가 늘어나는 수치(퍼센트를) text에 반영해야어야 합니다.
+    //1000/10 -> 0.1s
+    //일정시간마다 할일 setInterval(할일, 시간);
+    //할일 function(){ 실제로 할일 } -> 함수명 textAnimation
+    //실제로 할일 0% -> 1%, 1% -> 2% progressText.text('0%');
+    //요소의 너비 
+
+    /* 
+    (2-1) setInterval 방법
+    setInterval(textAnimation, 1000/10);
+
+    function textAnimation(){
+        //현재의 너비
+        //960px = 100% (progressWrap)
+        //100 = progressBar.width
+        //100/960 * 100 = 
+        var currentRate= progressBar.width() / progressWrap.width() * 100;
+        progressText.text(Math.ceil(currentRate) + '%');
+    }
+    */
+
+    /*(3) animate 메서드 활용*/
+    /*
+    CSS속성중에서 수치가 있는 요소만 animate 되지만, 
+    (3-1)
+    progressBar.animate({width:'60%'}, 2500, 'easeInOutQuint', function(){});
+    (3-2)
+    옵션을 풀어서 쓰는 방법 -> 옵션 값 , 옵션 값 
+    progressBar.animate({width:'60%'},{
+        duration:2500,
+        easing : 'easeInOutQuint',
+        complete : function(){
+            ...
+        }
+    })    
+    */ 
+
+    //(3-3) animate 옵션활용
+    //animate 옵션을 활용하면 , css의 속성외에 맘대로 만들어서 활용이 가능합니다.
+    //즉 animate 옵션을화용 사용자속성 만들고, 속성이 바뀌는 것을 작성가능
+    //hour 든 rate든 변수명은 상관이 없습니다.
+
+    /*
+    $({rate:0}).animate({rate:progressRate},{
+        duration: 2500, //2.5초
+        progress:function(){
+            //0~progressRate만큼으로 로 바뀌는 그때그때의 수치를 now에 담아줍니다.
+            var now = this.rate;
+            //console.log(now);
+            progressText.text(Math.ceil(now) + '%');
+        }
+    });
+    */
+
+   /*4-1 animate Number 라이브러리 */
+   /*https://aishek.github.io/jquery-animateNumber/*/
+   /* https://github.com/aishek/jquery-animateNumber/releases/tag/v0.0.14 */
+   /* animateNumber.min.js */
+   progressText.animateNumber({ number: progressRate });
+
+   var percent_number_step = $.animateNumber.numberStepFactories.append('%');
+   progressText.animateNumber(
+    {
+        number: progressRate,
+        numberStep: percent_number_step
+    },
+    {
+        easing: 'swing',
+        duration: 105000
+    }
+    );
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

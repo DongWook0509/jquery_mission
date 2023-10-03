@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="robots" content="index, follow">
+<title></title>	
+<link rel="stylesheet" href="css/main.css">
+
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js" integrity="sha512-WY7Piz2TwYjkLlgxw9DONwf5ixUOBnL3Go+FSdqRxhKlOqx9F+ee/JsablX84YBPLQzUPJsZvV88s8YOJ4S/UA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/waypoints.min.js"></script>
+<!-- <script src="js/main2.js"></script> -->
+</head>
+<body>
+	
+	<div class="section1 section"></div>
+	<div class="section2 section">
+		<div class="animate" data-rate="60"></div>
+	</div>
+
+	<script>
+		//waypoint 라이브러리 
+		//이게 화면에 나타나기 전까지 보다 스크롤을 하면...! 을 waypoint를 줄여서 쓴거입니다.
+		//if ($(window),scrollTop() >= threshold) -> waypoint 라이브러리가 해결해줍니다.
+
+		$(function(){
+			var executed = false;
+			$('.section2').waypoint(function(){
+				var targetNumber = $('.animate').attr('data-rate');
+				if(!executed){
+					var percent_number_step = $.animateNumber.numberStepFactories.append(' %')
+					$('.animate').animateNumber(
+						{number : targetNumber,
+							numberStep: percent_number_step,
+						},
+						6500);
+						executed = true;
+					}
+				},
+				
+			{
+				// 이슈 : 넘어가기전에 해야 합니다. (들 와서도 작동을 해야합니다.)
+					offset:'80%'
+			}
+			
+			
+			);
+		})
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

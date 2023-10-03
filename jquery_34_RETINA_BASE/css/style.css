@@ -1,0 +1,27 @@
+.demo-container {
+    width: 500px;
+    height: 333px;
+    /*CSS 차원에서 전체를 구겨놓고 싶기 때문에
+    0 0 / 100% 100%; 를 추가 합니다.*/
+    background: url("../images/image.jpg") no-repeat 0 0 / 100% 100%;;
+    text-indent: -9999px;
+}
+
+/*
+-webkit- : 엔진명
+min-pixel-ratio가 2이상인것 */
+
+/*따라서, background 속성은 배경의 여러 측면을 설정할 때 사용되며,
+ background-image 속성은 단순히 배경 이미지를 설정할 때 사용됩니다.*/
+
+/*문제는 이미지로 직접 들어오는건 어떻게 2개 짜리로 바꿀것인가?
+  (1) pixel ratio를 구별할 수 있어야합니다
+  pixel ratio javascript 검색 
+*/
+
+ @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .demo-container {
+        background-image: url("../images/image@2x.jpg");
+    }
+}
+

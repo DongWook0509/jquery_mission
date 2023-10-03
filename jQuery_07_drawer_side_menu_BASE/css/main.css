@@ -1,0 +1,134 @@
+/*
+(1) .page-main > aside 를 보면 width가 350px 인데 
+    너비만큼 -350px 나가있습니다. (fosition : firxed)
+
+(2) .page-main > aside button 은 absolute 
+    부모는 aside (fixed)를 기준으로 따라오게 absolute로 해야합니다.
+
+(3) 
+ */
+html {
+    font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body {
+    background-color: #656565;
+}
+
+img {
+    vertical-align: middle;
+}
+
+button {
+    outline: none;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+.page-header {
+    background-color: #fff;
+}
+
+.page-header h1 {
+    width: 976px;
+    height: 80px;
+    margin: 0 auto;
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 80px;
+    letter-spacing: 0.1em;
+}
+
+.page-main {
+    position: relative;
+}
+
+.page-main > aside {
+    position: fixed;
+    background-color: rgba(0,0,0,0.8);
+    width: 350px;
+    height: 100%;
+    top: 0;
+    left: -350px;
+    /*(3) transition*/
+    transition : 0.3s cubic-bezier(.46,.16,.47,1.22);
+}
+
+/*(3) toggleClass의 open이란게 있으면*/
+.page-main > aside.open {
+    left: -70px;
+}
+
+.page-main > aside ul {
+    margin: 0;
+    padding: 0;
+    top: 50px;
+    left: 114px;
+    position: absolute;
+}
+
+.page-main > aside li {
+    margin: 0 0 20px;
+    list-style: none;
+}
+
+.page-main > aside button {
+    background-color: rgba(0,0,0,0.8);
+    display: block;
+    position: absolute;
+    top: 150px;
+    left: 350px;
+    width: 52px;
+    height: 132px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.page-footer {
+    background-color: #656565;
+}
+
+.page-footer small {
+    display: block;
+    color: #fff;
+    font-size: 11px;
+    text-align: right;
+    width: 976px;
+    margin: 0 auto;
+    height: 120px;
+    line-height: 120px;
+    letter-spacing: 0.15em;
+}
+
+.page-footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*
+ * Helpers
+ */
+
+/* Clearfix */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+
+

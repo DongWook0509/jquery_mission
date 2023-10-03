@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Lesson 6 - FitVids.js</title>
+
+	<style>
+		.container, .container-2{
+			width: 80%;
+			margin: 0 auto;
+		} 
+		.container iframe, .container-2 iframe{
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.min.js" integrity="sha512-/2sZKAsHDmHNoevKR/xsUKe+Bpf692q4tHNQs9VWWz0ujJ9JBM67iFYbIEdfDV9I2BaodgT5MIg/FTUmUv3oyQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- Demo content -->
+	<div class="container">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/GafKSu6igt0?si=PkKwqa1oPzUKTJpW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	</div>
+
+	<div class="container-2">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/Rn9jBiJJI78?si=JdrJ98Ygdf9wnfW9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	</div>
+
+
+	<!-- Add Bower components -->
+	<script>
+		//width: 80%를 비디오의 비율을 전부주면서 다 쓰게하고싶습니다. 그런데 어떻게? height를 눌려주면서요! 
+		//그걸 해결하려면 FITVIDS의 라이브러리를 사용합니다
+		//즉 지금은 width만 바뀌어지고 height도 바꿔주고싶습니다.
+		$(".container").fitVids();
+	</script>
+
+</body>
+</html>

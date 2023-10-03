@@ -1,0 +1,12 @@
+{
+  "name": "masonrly_40",
+  "version": "1.0.0",
+  "description": "masonrly_40 example",
+  "main": "index.js",
+  "author": "kim_dong_uk",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "masonry-layout": "^4.2.2"
+  }
+}

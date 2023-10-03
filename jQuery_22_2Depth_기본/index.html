@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<style>
+   * {margin:0; padding:0;}
+       ul li {list-style:none;}
+       .clearfix{display:flex}
+       body {background:green; overflow-y:scroll;padding-top:100px;}
+
+       header {	
+	   background:linear-gradient(white 50px, rgba(255,255,255,0.8) 50px, rgba(255,255,255,0.8) );
+	   height:50px;
+	   overflow:hidden;
+	   position:absolute;
+	   left:0; right:0;
+	   top:0;
+       }
+
+       nav {width:960px; margin:0 auto;}
+       nav > ul > li {line-height:50px; margin-right:40px;}
+       nav > ul > li ul{ width:100%;}
+
+       main p{
+       margin-bottom:27px;
+       }
+
+</style>
+
+<body>
+    <header>
+        <nav>
+                <ul class="clearfix">
+                    <li>1st menu
+                            <ul>
+                                <li>2nd menu</li>
+                                <li>2nd menu</li>
+                            </ul>
+                    </li>
+                    <li>1st menu
+                            <ul>
+                                <li>2nd menu menu</li>
+                                <li>2nd menu</li>
+                                <li>2nd menu</li>
+                                <li>2nd menu</li>
+                            </ul>
+                    </li>
+                    <li>1st menu
+                            <ul>
+                                <li>2nd menu</li>
+                                <li>2nd menu</li>
+                            </ul>
+                    </li>
+                    <li>1st menu
+                            <ul>
+                                <li>2nd menu</li>
+                                <li>2nd menu</li>
+                                <li>2nd menu</li>
+                            </ul>
+                    </li>				
+    
+                </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Main title</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>		
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, cupiditate! Repudiandae ad neque provident accusamus temporibus. Doloribus dolores nisi inventore accusamus aperiam quam ratione minus repudiandae. Rem fuga impedit odio.</p>	
+    </main>
+</body>
+<script>
+    /*첫번째 메뉴에서  마우스를 올리면 header 높이를 300px 0.3s*/
+    /*첫번째 메뉴에서  마우스가 떠나면 header 높이를  50px 0.3s*/
+    $(function(){
+        var $firstMenu = $('nav > ul > li'),
+            $header    = $('header');
+        $firstMenu.mouseover(function(){
+            $header.stop().animate({height:'300px'}, 300);
+        })
+        .mouseout(function(){
+            $header.stop().animate({height:'50px'}, 300);
+        });
+    });
+</script>
+</html>

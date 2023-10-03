@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Lesson 4 - jQuery Validation</title>
+	<script src="../jquery_35_VALIDATION_BASE/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../jquery_35_VALIDATION_BASE/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+	<style>
+		span.bad {
+			animation : fadeIn 0.5s forwards;
+			background:navy;
+			color : #fff;
+			padding: 5px;
+			white-space: nowrap;
+			border-radius: 10px;
+
+		}
+
+		@keyframes fadeIn {
+			from {opacity: 0; margin-left: 50px;}
+			from {opacity: 1; margin-left: 20px;}
+		}
+	</style>
+</head>
+<body>
+	<!--실시간으로 바로바로 피드백을 주기때문에 편합니다. validate 라이브러리-->
+	<!--novalidate 추가하면 , 아무 유효성 검사 없이 남아건다.-->
+	<form action="#" method="get" class="sendForm">
+		<fieldset>
+			<legend>Send Message</legend>
+			<p>
+				<!--userName의 변수명은 for 와 id가 매칭을 해줘야 합니다.-->
+				<label for="userName">Name(required at least 2 characters)</label>
+				<!--최소 2글자 required minlength 이것도 지우고 validate 함수로 사용을 합니다. -->
+				<!-- <input type="text" id = "userName" name ="username" required minlength="2"> -->
+				<input type="text" id = "userName" name ="username">
+			</p>
+			<p>
+				<!--required 속성을 전부 지웁니다.-->
+				<label for="userEmail">Email(required)</label>
+				<input type="email" id = "userEmail" name ="useremail">
+			</p>
+			<p>
+				<label for="userUrl">WebSite</label>
+				<input type="email" id = "userUrl" name ="userurl" required>
+			</p>
+			<p>
+				<label for="userMsg">Message</label>
+				<textarea name="userMsg" id="userMsg" cols="30" rows="10"></textarea>
+			</p>
+			<p>
+				<input type="submit" value = "Send Message">
+			</p>
+		</fieldset>
+	</form>
+	<script>
+		$(".sendForm").validate({
+			rules:{
+				username :{
+					required : true,
+					minlength : 2
+				},
+				useremail:{
+					required : true,
+					email: true
+				}
+			},
+			messages:{
+				//우리만의 메세지를 띄워봅시다. 
+				//name의 이름을 따라갑니다 (주의)
+				username : {
+					required: '이름은 필수 입니다.',
+					minlength : '최소 2글자 이상 입력해주세요'
+				}, 
+				useremail : {
+					required: '이메일은 필수 입니다.',
+					email : '형식을 지켜주세요'
+				}
+			}, //tootip에 나오는걸 써보고 싶습니다
+			//messages 메세지를 span태그로 바꾸겠습니다.
+			errorElement: 'span',
+			//messages의 클래스명을 바꿔 보겠습니다.
+			errorClass:'bad',
+			validClass:'good'
+		})
+	</script>
+</body>
+</html>

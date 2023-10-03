@@ -1,0 +1,12 @@
+{
+  "name": "35_validation",
+  "version": "1.0.0",
+  "description": "35_validation_description",
+  "main": "index.js",
+  "author": "kim_dong_wook_35",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "jquery-validation": "^1.19.5"
+  }
+}

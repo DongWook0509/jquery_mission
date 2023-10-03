@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="robots" content="index, follow">
+<title></title>	
+<link rel="stylesheet" href="css/main.css">
+
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- <script src="js/waypoint.js"></script> -->
+<!-- <script src="js/main.js"></script> -->
+</head>
+<body>
+	
+	<div class="section1 section"></div>
+	<div class="section2 section">
+		<div class="animate" data-rate="60"></div>
+	</div>
+
+</body>
+
+<script>
+	var executed = false; //맨처음에는 실행이 안됨
+
+	$(window).scroll(function(){
+		var threshold = $('.section2').offset().top - 300;
+
+		if(!executed){ //if(executed == false) 실행된적이 없다라는 조건이 참이면  그럼 실행해 
+			if($(window).scrollTop() >= threshold){
+				var progressRate = $('.animate').attr('data-rate');
+				//animate progress 사용자 속성 값 percent -> 60%
+				/*
+				$('.box').animate({width:100%, height:100%}, 시간, 이징, 다른할일);
+				$('.box').animate({width:100%, height:100%}, 
+				{
+					duraction : 1500,
+					easing : 'easeOutQuint',
+					complate : function(){... 끝나고 할일 }
+					progress : function(){... 진행중 할일 }
+				});
+				*/
+				$({percent: 0}).animate({percent:progressRate},{
+					duration:1500,
+					progress: function(){
+						var now = this.percent;
+						$('.animate').text(Math.ceil(now) + '%');
+					}
+			});
+			executed = true; //이제 true로 바꿔놓으면 !executed 이 로직은 돌지가 않습니다. 
+		}//if문
+	  } //executer if
+	});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
