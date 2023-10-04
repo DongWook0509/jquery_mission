@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        (1)
+        .input-group -> position : relative
+        label -> position : absolute 
+
+        (2)
+        FirstName의 글씨는 label의 글씨가  아닙니다. 
+        <input type="text" id="txtFirstName" placeholder="First Name"/> 의 글씨입니다.
+        보통의 동작은 FirstName은 클릭하면 사라집니다. 즉 jQuery를 이용해서 placeholder의 값을 없애야 합니다.
+        */
+        * { box-sizing: border-box; }
+        body {
+            color: #444;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .input-group{
+            width: 340px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        input {
+            border: none;
+            border-bottom: 1px solid #888;
+            font-size: 20px;
+            display: block; /*아래쪽으로 넘어오기*/
+        }
+
+        input:focus{
+            outline: none;
+            /*(5) input에 focus가 걸리면*/
+            border-bottom-width : 4px;
+            border-color : #48f;
+            transition: 0.5s;
+        }
+
+        label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            /*(3) 마우스를 올라오면 커서가 작대기로 나와서 '아 여기 입력을 할 수 있는거네' 라는걸 인지할 수 있도록 */
+            visibility: hidden;
+            transition: 0.5s;
+        }
+
+        /*(4) 클래스명이 label-top이 있다면*/
+        .label-top {
+            top: -20px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+    </style>
+</head>
+<body>
+    <form>
+        <div class="input-group">
+          <label for="txtFirstName">First Name</label>
+          <input type="text" id="txtFirstName" placeholder="First Name" />
+        </div>
+        <div class="input-group">
+          <label for="txtLastName">Last Name</label>
+          <input type="text" id="txtLastName" placeholder="Last Name" />
+        </div>
+      </form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    /*
+    $(this).next();
+    $(this).prev();
+
+    $(this).sibling('선택자')
+
+    자식요소중에 찾기
+    $(this).find('선택자')
+    $(this).children('선택자')
+
+    부모요소 찾기
+    $(this).parent('선택자')
+
+    가까운 부모중에서 
+    $(this).closest()
+    */
+    $(function(){
+        /*<input type="text" id="txtFirstName" placeholder="First Name" /> 의  placeholder의 값을 바꿔줘야합니다.*/
+        $('input').click(function(){
+            $(this).attr('placeholder', '');
+             //prev()로 바로 label 을 선택하는 방법은 좋긴 좋으나
+             //부모로 갔다가, 자식요소 중에 찾는 방법이 가장 안전하고 태그가 늘어날때도 오류를 덜 만듭니다. 
+            $(this).parent().find('label').addClass('label-top');
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        /* 1. Style the hamburger button. */
+        .hamburger-button {
+            display: block;
+            position: relative;
+            transition: .3s ease-in-out;
+            width: 45px;
+            height: 34px;
+        }
+
+        .hamburger-button span {
+            position: absolute;
+            height: 8px;
+            border-radius: 4px;
+            width: 100%;
+            background: #3d4146;
+            top:0;
+            transition: 0.3s;
+        }
+
+        .hamburger-button span:nth-child(1){
+            top: 0;
+        }
+
+        .hamburger-button span:nth-child(2),
+        .hamburger-button span:nth-child(3)
+        {
+            top: 13px;
+        }
+
+        .hamburger-button span:nth-child(1){
+            top: 26px;
+        }
+
+        .hamburger-button.active span:nth-child(1),
+        .hamburger-button.active span:nth-child(4)
+        {
+            opacity: 0;
+        }
+
+        .hamburger-button.active span:nth-child(2){
+            transform: rotate(45deg);
+        }
+        .hamburger-button.active span:nth-child(3){
+            transform: rotate(-45deg);
+        }
+
+        /*(2) overlay 가 위에 숨겨놓고 클릭을 했을때 아래로 내려가야합니다.*/
+        .overlay{
+            position: fixed;
+            background: #7ba9c3;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            /*(3) opacity로 해도 되는데
+            아예 요소가 화면에 안 보이게 끔 visibilty 까지 겁니다.
+            height는 0으로 세팅을 합니다.
+            (4)
+            transition : 0.3s 도 추가해줍니다.
+            */
+            height: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition : 0.3s
+        }
+
+        nav ul li {
+            /*(5) opacity: 0;도 없다가 나타남*/
+            list-style: none;
+            margin:  1rem 0;
+            opacity: 0;
+        }
+
+        
+        nav ul li a{
+            text-decoration: none;
+            color: #fff;
+            /*(1) 효과를 줘보겠습니다.*/
+            opacity: 0.75;
+            transition: opacity 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+        }
+
+        /*(6) fadeInLeft 애니메이션 세팅*/
+        @keyframes fadeInLeft {
+            0% {opacity: 0; transform:translateX(-25%);}
+            100% {opacity: 1; transform:translateX(0);}
+        }
+
+        /*(7) .overlay 에 visible 이라는 클래스가 들어오면 */
+        .overlay.visible {
+            height: 100%;
+            opacity: .85;
+            visibility: visible;
+        }
+
+        .overlay.visible nav ul li {
+            animation: fadeInLeft 0.3s ease forwards;
+        }
+
+        .overlay.visible nav ul li:nth-child(1){
+            animation-delay: 0.23s;
+        }
+
+        .overlay.visible nav ul li:nth-child(2){
+            animation-delay: 0.26s;
+        }
+
+        .overlay.visible nav ul li:nth-child(3){
+            animation-delay: 0.29s;
+        }
+
+        .overlay.visible nav ul li:nth-child(4){
+            animation-delay: 0.32s;
+        }
+
+        .overlay.visible nav ul li:nth-child(5){
+            animation-delay: 0.35s;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#" class="hamburger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>	
+    
+    <div class="overlay">
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $('.hamburger-button').click(function(e){
+        e.preventDefault();
+        $(this).toggleClass('active');
+        $('.overlay').toggleClass('visible');
+    });
+
+    // .overlay height가 늘어나면서 내려가면서 opacity : 1 , visibility:visible 로 바뀌어야 합니다.
+</script>
+</html>

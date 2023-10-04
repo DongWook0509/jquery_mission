@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- Compiled and minified CSS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     <style>
+        .col {
+            background-color: #f99;
+            color: #fff;
+            /*여기에서는 border로 떨궜는데 그렇게 하면 안하고 싶으면
+            <div class="col s6">
+                <h3>title</h3>
+            </div>
+            여기에 div를 한번 더 감싼다. 
+            */
+            border: 2px solid #fff;
+        }
+     </style>
+</head>
+<body>
+    <!-- div.container>div.row>div.col.s12>h3 -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3>title</h3>
+            </div>
+        </div>
+        <div class="row">
+            <!-- row 안에 s6(6칸) + s6(6칸) = s12
+            즉 2개를 만들었습니다.-->
+            <div class="col s6">
+                <h3>title</h3>
+            </div>
+            <div class="col s6">
+                <h3>title</h3>
+            </div>
+        </div>
+
+        <!--row 의 역할은 무엇일까요?
+            float을 clear의 해지해주는 역할
+        -->
+        <div class="row">
+            <!-- row 안에 s4(4칸) + s4(4칸)  = s12
+            즉 3개를 만들었습니다.-->
+            <div class="col s4">
+                <h3>title</h3>
+            </div>
+            <div class="col s4">
+                <h3>title</h3>
+            </div>
+            <div class="col s4">
+                <h3>title</h3>
+            </div>
+        </div>
+       
+        <!--반응형으로 한번 해보겠습니다.-->
+        <div class="row">
+            <!-- row 안에 s4(4칸) + s4(4칸)  = s12
+            즉 3개를 만들었습니다.-->
+            <div class="col s12 m4">
+                <h3>title</h3>
+            </div>
+            <div class="col s12 m4">
+                <h3>title</h3>
+            </div>
+            <div class="col s12 m4">
+                <h3>title</h3>
+            </div>
+        </div>
+
+        <!-- div.row>div.col.s6>h3 
+        offset-s3 : 앞에 3칸을 비워!
+        -->
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <h3>title</h3>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

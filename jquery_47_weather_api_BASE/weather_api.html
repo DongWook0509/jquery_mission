@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Weather</title>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.7.min.js" ></script>
+    <!--How to Start
+    https://openweathermap.org/appid
+    -->
+
+    <!--
+    나의 API KEY
+    6720d033f8dcf818e5ab322f3818cc13
+    -->
+
+    <!--도시의 코드를 알아야 합니다. 
+    https://openweathermap.org/find?q=
+    (1)원하는 지역명을 검색하고 (인천도시코드 : 1843561)
+    https://openweathermap.org/city/1843561
+    도시코드 : 1843561
+    -->
+
+    <!--
+        브라우저의 검색창에 엔터 
+        http://api.openweathermap.org/data/2.5/forecast?id=1843561&appid=6720d033f8dcf818e5ab322f3818cc13
+    
+    (1) 검색해보면 켈빈온도로 되어있습니다.
+    파라미터 참고용
+    https://openweathermap.org/current#parameter 
+    main.temp Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
+    중에서 우리는 Metric 의 온도측정법을 사용해야 합니다.
+    &units=metric 을 추가합니다.
+    http://api.openweathermap.org/data/2.5/forecast?id=1843561&appid=6720d033f8dcf818e5ab322f3818cc13&units=metric
+
+    우리가 배열을 만들때 
+    var array = [1,2,3,4];
+    var stringarray = ['str1', 'str2', 'str3']
+    여러개의 배열을 만들때는 ?
+    varr arrays = [{temp:value , temp_min:value}, {temp:value, temp_min:value}]
+    
+    실시간으로 보고싶다면 forecast? 를 weather로 바꾸면됩니다.
+    https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
+    https://api.openweathermap.org/data/2.5/weather?id=1843561&appid=6720d033f8dcf818e5ab322f3818cc13&units=metric
+-->
+</head>
+<script>
+</script>
+<body>
+<h1>weather api</h1>
+<h2> - 인천날씨예보</h2>
+<div class="ctemp">현재 온도: </div>
+<div class="clowtemp">최저 온도: </div>
+<div class="chightemp">최고 온도: </div>
+<div class="cicon">아이콘 : </div>
+
+<script>
+    /*
+    $.getJSON('파일경로', function(){
+        //data로 할일...
+    });
+    */
+
+    $.getJSON('https://api.openweathermap.org/data/2.5/weather?id=1843561&appid=6720d033f8dcf818e5ab322f3818cc13&units=metric', 
+    function(data){
+        //forecast? -> data로 할일...
+        //배열에 안에 있는 값을 가져올때는 [] 가 있을때 []로 뽑아준다
+        /*
+        var $cTemp = data.list[0].main.temp;
+        var $minTemp = data.list[0].main.temp_min;
+        var $maxTemp = data.list[0].main.temp_max;
+        //날짜
+        var $cDate = data.list[0].dt_txt;
+        https://openweathermap.org/weather-conditions : 참조사이트 
+        https://openweathermap.org/img/wn/10d@2x.png : 이미지소스의 경로
+        <img src="https://openweathermap.org/img/wn/10d@2x.png"/> 중에서
+        10d 부분을 바꿔줘야 합니다.
+        var $cIcon = data.list[0].weather[0].icon
+        */
+        
+        //weather? -> data로 할일
+        var $cTemp = data.main.temp;
+        var $minTemp = data.main.temp_min;
+        var $maxTemp = data.main.temp_max;
+        //날짜
+        var $cDate = data.dt;
+        //jQuery에서 현재시간을 출력하는 방법
+        //Date.now() ==  $.now() //1696342865028 (UNIX의 시간) 
+        //alert(new Date(Date.now()));  //Tue Oct 03 2023 23:23:14 GMT+0900 (한국 표준시)
+        //.getFullYear() 년도
+        //.getMonth()은 0이 1월 이라서 여기에다가 +1을 해줘야합니다. ($now.getMonth()+1)
+        //getDate() 
+        //..getHours(), .getMinutes()
+        var $now = new Date($.now());
+        //alert($now.getFullYear() +'/'+ ($now.getMonth()+1) + '/' +  $now.getDate() + '/' + $now.getHours() + ':' + $now.getMinutes());
+        var $cData = $now.getFullYear() +'/'+ ($now.getMonth()+1) + '/' +  $now.getDate() + '/' + $now.getHours() + ':' + $now.getMinutes();
+
+        //아이콘
+        var $cIcon = data.weather[0].icon;
+
+        /*A.appendTo(B) B요소의 내용의 뒤에 A를 추가 
+          A.append(B) A요소의 내용의 뒤에 B를 추가
+          A.prependTo(B) B요소의 내용의 앞에 A를 추가
+          A.prepend(B) A요소의 내용의 앞에 B를 추가 
+        */
+        $('.ctemp').append($cTemp);
+        $('.clowtemp').append($minTemp);
+        $('.chightemp').append($maxTemp);
+        $('h2').prepend($cData);
+        //작은따옴표 구분
+        $('.cicon').append('<img src ="https://openweathermap.org/img/wn/' + $cIcon + '@2x.png"/>');
+
+        /*중요한건 실시간 데이터를 가지고 오고싶습니다.. */
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*가운데 2개를 겹쳐놓고 클릭하면 
+        맨위와 맨아래는 사라지고 cross가 됩니다.
+        */
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* 1. Style the hamburger button. */
+        .hamburger-button {
+            position: relative;
+            transition: .3s ease-in-out;
+            width: 45px;
+            height: 34px;
+        }
+
+        .hamburger-button span {
+            position: absolute;
+            height: 8px;
+            border-radius: 4px;
+            width: 100%;
+            background: #3d4146;
+            top:0;
+            transition: 0.3s;
+        }
+
+        .hamburger-button span:nth-child(1){
+            top: 0;
+        }
+
+        .hamburger-button span:nth-child(2),
+        .hamburger-button span:nth-child(3)
+        {
+            top: 13px;
+        }
+
+        .hamburger-button span:nth-child(1){
+            top: 26px;
+        }
+
+        /*클래스 active가 들어오면*/
+        .hamburger-button.active span:nth-child(1),
+        .hamburger-button.active span:nth-child(4)
+        {
+            opacity: 0;
+        }
+
+        .hamburger-button.active span:nth-child(2){
+            transform: rotate(45deg);
+        }
+        .hamburger-button.active span:nth-child(3){
+            transform: rotate(-45deg);
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <a href="#" class="hamburger-button">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $('.hamburger-button').click(function(e){
+        e.preventDefault();
+        $(this).toggleClass('active');
+    });
+</script>
+</html>
